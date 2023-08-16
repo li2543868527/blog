@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ユーザー登録へようこそ</title>
+	<link rel="stylesheet" th:href="@{/css/style1.css}">
+</head>
+
+<body>
+	<h1>ユーザー登録へようこそ</h1>
+	<form th:action="@{/register/process}" method="POST">
+		<input type="text" name="userName" placeholder="ユーザー名を入力してください">
+		<br>
+		<input type="password" name="password" placeholder="パスワードを入力してください">
+		<br>
+		<input type="text" name="email" placeholder="メールアドレスを入力してください">
+		<br>
+		<input type="submit" value="登録">
+		<a th:href="@{/login}">アカウントがある？ログインへ</a>
+	</form>
+</body>
+
+</html>
