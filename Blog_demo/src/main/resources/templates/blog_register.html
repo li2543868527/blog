@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/styleForIndex.css}">
+	<title>ブログ登録</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="logo">
+			<a>
+				<img th:src="@{/images/logo.png}" alt="">
+			</a>
+		</div>
+		<div class="search-bar">
+			<input type="text" placeholder="search">
+			<button>search</button>
+		</div>
+		<nav class="navigation">
+			<ul>
+                <li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
+                <li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
+                <li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
+            </ul>
+		</nav>
+	</header>
+	<main class="main-content">
+		<div class="blog-form">
+			<h2>新しいブロクを作りましょう</h2>
+			<form th:action="@{/index/register/process}" method="post" enctype="multipart/form-data">
+				<label for="title">タイトル</label>
+				<input type="text" id="title" name="blogTitle" required>
+
+				<label for="image">画像</label>
+				<input type="file" id="image" name="blogImage">
+
+				<label for="date">日付</label>
+				<input type="date" id="date" name="registerDate" required>
+
+				<label for="content">内容</label>
+				<textarea id="content" name="blogDetails" rows="8" placeholder="ブログの詳細や具体的な内容" required></textarea>
+				
+                 <input type="hidden" name="userId" th:value="${userId}">
+				<input type="submit">submit</input>
+			</form>
+		</div>
+	</main>
+	<footer class="footer">
+		<p>&copy; 2023 lhc</p>
+	</footer>
+</body>
+
+</html>

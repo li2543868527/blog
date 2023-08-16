@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styleForIndex.css}">
+    <title>ブログ編集</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a>
+                <img th:src="@{/images/logo.png}" alt="">
+            </a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="search">
+            <button>search</button>
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="/" data-text="ホームページ">ホームページ</a></li>
+                <li><a href="/author" data-text="自己紹介">自己紹介</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="blog-form">
+            <h2>ブログ編集</h2>
+            <form>
+                <label for="title">タイトル</label>
+                <input type="text" id="title" name="title" required>
+                
+                <label for="image">画像</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+                
+                <label for="date">日付</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="content">内容</label>
+                <textarea id="content" name="content" rows="8" required></textarea>
+                
+                <button type="submit">submit</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2023 lhc</p>
+    </footer>
+</body>
+</html>

@@ -25,11 +25,11 @@ public class UserService {
 	}
 
 	// ログインチェック用のメソッド
-	public boolean loginCheck(String email, String password) {
+	public UserEntity loginCheck(String email, String password) {
 		if (userDao.findByEmailAndPassword(email, password) == null) {
-			return false;
+			return null;
 		}
-		return true;
+		return userDao.findByEmailAndPassword(email, password);
 	}
 	
 	

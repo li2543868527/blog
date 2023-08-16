@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/styleForIndex.css}">
+	<title>ブログホームページ</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="logo">
+			<a>
+				<img th:src="@{/images/logo.png}" alt="">
+			</a>
+		</div>
+		<div class="search-bar">
+			<input type="text" placeholder="search">
+			<button>search</button>
+		</div>
+		<nav class="navigation">
+			<ul>
+				<li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
+				<li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
+				<li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
+				<li><a th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main class="main-content">
+		<div class="blog-preview">
+			<ul class="blog-preview">
+				<li th:each="list:${list}">
+					<a href="@{/index/edit/{blogId}(blogId=${list.blogId})}">
+						<img th:src="@{/temp/blog-img/{imagePath}(imagePath=${list.blogImage})}" alt="">
+						<h2 th:text="${list.blogTitle}"></h2>
+						<p th:text="${list.blogDetails}"></p>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+	</main>
+	<footer class="footer">
+		<p>&copy; 2023 lhc</p>
+	</footer>
+</body>
+
+</html>

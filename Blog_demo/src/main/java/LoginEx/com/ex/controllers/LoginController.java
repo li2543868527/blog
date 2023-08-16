@@ -7,14 +7,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import LoginEx.com.ex.models.entity.UserEntity;
 import LoginEx.com.ex.services.UserService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private HttpSession httpSession;
 
 	@GetMapping("/login")
 	public ModelAndView getLoginPage() {
@@ -24,21 +28,21 @@ public class LoginController {
 	}
 
 	@PostMapping("/login/process")
-	public ModelAndView login(@RequestParam String email, @RequestParam String password) {
-		ModelAndView mav = new ModelAndView();
-		if (userService.loginCheck(email, password)) {
-			
-			mav.addObject("email", email);
-			mav.addObject("password", password);
-			
-			mav.setViewName("result.html");
-			
-			return mav;
+	public String login(@RequestParam String email, @RequestParam String password) {
+		UserEntity user = userService.loginCheck(email, password);
+		if (user ==null) {
+			return "redirect:/login";
 		} else {
-			mav.setViewName("login.html");
-			return mav;
+			httpSession.setAttribute("user", user);
+			return "redirect:/index";
 		}
-
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		//セッションの無効化
+		httpSession.invalidate();
+		return "redirect:/login";
 	}
 
 }
