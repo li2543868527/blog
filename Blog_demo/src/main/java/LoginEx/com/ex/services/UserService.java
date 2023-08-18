@@ -16,7 +16,9 @@ public class UserService {
 	// 登録処理のメソッド
 	public boolean createUser(String email, String userName, String password) {
 		if (userDao.findByUserName(userName) == null) {
+			//timestampで時間のオブジェクトを新規します
 			Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+			//保存処理
 			userDao.save(new UserEntity(email, userName, password,currentTime));
 			return true;
 		} else {

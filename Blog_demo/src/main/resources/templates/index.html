@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 
 <head>
 	<meta charset="UTF-8">
@@ -15,10 +16,14 @@
 			</a>
 		</div>
 		<div class="search-bar">
-			<input type="text" placeholder="search">
-			<button>search</button>
+			<form th:action="@{/index/search}" method="get">
+				<input type="text" name="term" placeholder="search">
+				<button type="submit">search</button>
+			</form>
 		</div>
+
 		<nav class="navigation">
+			<audio controls th:src="@{/mp3/music.mp3}" type="audio/mp3">音楽</audio>
 			<ul>
 				<li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
 				<li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
@@ -28,10 +33,13 @@
 		</nav>
 	</header>
 	<main class="main-content">
+		
+		
+		
 		<div class="blog-preview">
 			<ul class="blog-preview">
 				<li th:each="list:${list}">
-					<a href="@{/index/edit/{blogId}(blogId=${list.blogId})}">
+					<a th:href="@{/index/blog/{blogId}(blogId=${list.blogId})}">
 						<img th:src="@{/temp/blog-img/{imagePath}(imagePath=${list.blogImage})}" alt="">
 						<h2 th:text="${list.blogTitle}"></h2>
 						<p th:text="${list.blogDetails}"></p>
@@ -39,11 +47,14 @@
 				</li>
 			</ul>
 		</div>
-
 	</main>
 	<footer class="footer">
+		<a href="https://info.flagcounter.com/hRQh"><img src="https://s11.flagcounter.com/count2/hRQh/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
 		<p>&copy; 2023 lhc</p>
+		
 	</footer>
+
+
 </body>
 
 </html>

@@ -10,15 +10,18 @@
 <body>
 	<h1>ユーザー登録へようこそ</h1>
 	<form th:action="@{/register/process}" method="POST">
-		<input type="text" name="userName" placeholder="ユーザー名を入力してください">
+		<input type="text" name="userName" placeholder="ユーザー名を入力してください" required>
 		<br>
-		<input type="password" name="password" placeholder="パスワードを入力してください">
+		<input type="password" name="password" placeholder="パスワードを入力してください" required>
 		<br>
-		<input type="text" name="email" placeholder="メールアドレスを入力してください">
+		<input type="text" name="email" placeholder="メールアドレスを入力してください" required>
 		<br>
 		<input type="submit" value="登録">
 		<a th:href="@{/login}">アカウントがある？ログインへ</a>
 	</form>
+	<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+	<script th:src="@{/js/register.js}"></script>
 </body>
+
 
 </html>

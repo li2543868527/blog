@@ -26,7 +26,7 @@ public class LoginController {
 		mav.setViewName("login.html");
 		return mav;
 	}
-
+	//普通のゲット・ポストメソッド
 	@PostMapping("/login/process")
 	public String login(@RequestParam String email, @RequestParam String password) {
 		UserEntity user = userService.loginCheck(email, password);
@@ -38,6 +38,7 @@ public class LoginController {
 		}
 	}
 	
+	//ホームページのログアウトボタンのメソッドをここに書きます。
 	@GetMapping("/logout")
 	public String logout() {
 		//セッションの無効化

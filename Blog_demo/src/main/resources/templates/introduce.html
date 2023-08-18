@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/styleForIndex.css}">
+	<title>ブログホームページ</title>
+	<style>
+		.introduction {
+			font-family: "Yu Gothic", Arial, sans-serif;
+			margin: 20px;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			text-align: justify;
+			text-indent: 1em;
+		}
+
+		img {
+			width: 500px;
+			height: 400px;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="header">
+		<div class="logo">
+			<a>
+				<img th:src="@{/images/logo.png}" alt="">
+			</a>
+		</div>
+		<div class="search-bar">
+			<form th:action="@{/index/search}" method="get">
+				<input type="text" name="term" placeholder="search">
+				<button type="submit">search</button>
+			</form>
+		</div>
+		<nav class="navigation">
+			<ul>
+				<li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
+				<li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
+				<li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
+				<li><a th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main class="main-content">
+		<div class="introduction">
+			<img th:src="@{/images/logo.png}" alt="">
+			<p>皆さん、こんにちは。私のホームページへお越しいただき、大変光栄です。私はリコウチョウと申します。このページの作者です。私はJavaが大好きで、このブログのページを作成しました。このページを通して、みなさんにハッピーをお届けできれば幸いです。
+			</p>
+			<p>このページの様々な機能を実現できるのは、井澤先生のおかげです。先生のご指導に心より感謝申し上げます。</p>
+			<p>（上の画像はこのブログのlogoです）</p>
+		</div>
+	</main>
+	<footer class="footer">
+		<p>&copy; 2023 lhc</p>
+	</footer>
+</body>
+
+</html>

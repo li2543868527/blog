@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+//これは、ユーザーのentityです。
+
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -48,12 +50,12 @@ public class UserEntity {
 		this.userId = userId;
 	}
 
-	public String getuserEmail() {
+	public String getemail() {
 		return email;
 	}
 
-	public void setuserEmail(String userEmail) {
-		this.email = userEmail;
+	public void setemail(String email) {
+		this.email = email;
 	}
 
 	public String getuserName() {
@@ -74,7 +76,7 @@ public class UserEntity {
 
 	@Override
 	public String toString() {
-		return "userEntity [userId=" + userId + ", userEmail=" + email + ", userName=" + userName
+		return "userEntity [userId=" + userId + ", email=" + email + ", userName=" + userName
 				+ ", password=" + password + "]";
 	}
 	

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/styleForIndex.css}">
+	<title>ブログホームページ</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="logo">
+			<a>
+				<img th:src="@{/images/logo.png}" alt="">
+			</a>
+		</div>
+		<div class="search-bar">
+			<form th:action="@{/index/search}" method="get">
+				<input type="text" name="term" placeholder="search">
+				<button type="submit">search</button>
+			</form>
+		</div>
+
+		<nav class="navigation">
+			<ul>
+				<li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
+				<li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
+				<li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
+				<li><a th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main class="main-content">
+		<div class="blog-details">
+			<img th:src="@{/temp/blog-img/{imagePath}(imagePath=${blog.blogImage})}" alt="">
+			<h2 th:text="${blog.blogTitle}"></h2>
+			<p th:text="${blog.blogDetails}"></p>
+		</div>
+		<!--
+		<a th:href="@{/index/edit/{blogId}(blogId=${blog.blogId})}" class="edit-button">ブログ編集</a>
+
+		<form th:action="@{/index/delete/{blogId}(blogId=${blog.blogId})}" method="post">
+			<button type="submit" class="delete-button">ブログ削除</button>
+		</form>
+		-->
+
+		
+        <!--<div>
+    		<a th:href="@{/index/edit/{blogId}(blogId=${blog.blogId})}" class="edit-button" th:if="${userIdOfBlog == userId}">ブログ編集</a>
+    		<form th:action="@{/index/delete/{blogId}(blogId=${blog.blogId})}" method="post" th:if="${userIdOfBlog == userId}">
+       		<button type="submit" class="delete-button">ブログ削除</button>
+    		</form>
+		</div>-->
+
+		 <div th:if="${userIdOfBlog == userId}">
+    		<a th:href="@{/index/edit/{blogId}(blogId=${blog.blogId})}" class="edit-button">ブログ編集</a>
+    		<form th:action="@{/index/delete/{blogId}(blogId=${blog.blogId})}" method="post">
+       		<button type="submit" class="delete-button">ブログ削除</button>
+    		</form>
+		</div>
+     <div th:if="${userIdOfBlog != userId}">
+    	
+		</div>
+		
+		<!-- comment機能 -->
+ 		<div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">コメントボックス</a> is loading comments...</div>
+		<link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+ 		<script type="text/javascript" id="hcb"> if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24ND2.EJYxMuilfJJWETbr90"+"&opts=16798&num=10&ts=1692331408229");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})();  </script>
+
+
+	</main>
+	<footer class="footer">
+		<p>&copy; 2023 lhc</p>
+	</footer>
+</body>
+
+</html>

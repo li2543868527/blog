@@ -14,6 +14,7 @@ public class RegisterController {
 	@Autowired
 	private UserService adminService;
 
+	//普通のゲット・ポストメソッド
 	@GetMapping("/register")
 	public ModelAndView getRegisterPage() {
 		ModelAndView mav = new ModelAndView();

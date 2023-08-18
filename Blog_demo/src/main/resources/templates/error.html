@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果がありません</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .message {
+            font-size: 24px;
+            text-align: center;
+            color: red;
+        }
+    </style>
+    <script>
+        var seconds = 3;
+
+        function updateCountdown() {
+            if (seconds > 0) {
+                document.getElementById("countdown").textContent = seconds;
+                seconds--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                window.location.href = "/index"; // 跳转回主页
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            updateCountdown();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="message">
+        検索したい内容がありません、<span id="countdown">3</span>秒後ホームページに帰ります。
+    </div>
+</body>
+
+</html>
