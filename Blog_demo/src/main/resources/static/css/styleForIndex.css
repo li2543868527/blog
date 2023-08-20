@@ -54,6 +54,7 @@
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	text-align: center;
+	width: 100%;
 }
 /* !!!!!!!*/
 .blog-preview p {
@@ -68,6 +69,9 @@
 .blog-preview img {
 	max-width: 100%;
 	height: auto;
+	width: 100%;
+	object-fit: cover;
+	aspect-ratio: 16/9;
 }
 
 /* Footer styles */
@@ -183,4 +187,23 @@ textarea {
 	width: auto;
 	height: auto;
 	margin-bottom: 10px;
+}
+
+.marquee-text {
+    font-size: 14px;
+    color: #FF0000; 
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }

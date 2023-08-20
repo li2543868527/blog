@@ -35,22 +35,33 @@ public class BlogController {
 
 	// ホームページのインデックスのゲットメソッド
 	@GetMapping("/index")
-	public String getBlogIndex(Model model) {
-		//ダウンキャストをして、ユーザーの対象をもらえる。
-		UserEntity user = (UserEntity) httpSession.getAttribute("user");
-		if (user == null) {
-			//もし、ユーザーが存在しなかった場合あるいはログインしない場合は、もう一度ログイン画面に戻る
-			return "redirect:/login";
-		} else {
-			//ちゃんとログインすると、全部をブログをデータベースから取って、SORTで順次に並ぶ。
-			List<BlogEntity> list = blogService.selectAll(user.getuserId());
-			list.sort(Comparator.comparing(BlogEntity::getRegisterDate).reversed());
-			
-			model.addAttribute("list", list);
-			model.addAttribute("userName", user.getuserName());
-			//インデックスに行く
-			return "index.html";
-		}
+	public String getBlogIndex(Model model, HttpSession httpSession) {
+	    // ダウンキャストをして、ユーザーの対象を取得
+	    UserEntity user = (UserEntity) httpSession.getAttribute("user");
+
+	    // もし、ユーザーがログインしていない場合は、未ログイン用のページにリダイレクト
+	    if (user == null) {
+	        return "redirect:/notloggedin";
+	    } else {
+	        // ログインしている場合、ブログをデータベースから取得して表示
+	        List<BlogEntity> list = blogService.selectAll(user.getuserId());
+	        list.sort(Comparator.comparing(BlogEntity::getRegisterDate).reversed());
+
+	        model.addAttribute("list", list);
+	        model.addAttribute("userName", user.getuserName());
+	        return "index.html";
+	    }
+	}
+	
+	
+	@GetMapping("/notloggedin")
+	public String showNotLoggedInPage(Model model) {
+		
+		List<BlogEntity> list = blogService.previewAll();
+        list.sort(Comparator.comparing(BlogEntity::getRegisterDate).reversed());
+
+        model.addAttribute("list", list);
+	    return "notloggedin.html"; 
 	}
 
 	
@@ -127,6 +138,7 @@ public class BlogController {
 			model.addAttribute("user", user);
 			model.addAttribute("userId", user.getuserId());
 			model.addAttribute("userIdOfBlog", blog.getUserId());
+			model.addAttribute("defaultUsername", user.getuserName());
 			return "blog_detail_thing.html";
 		}
 	}
@@ -147,6 +159,7 @@ public class BlogController {
 			model.addAttribute("userName", user.getuserName());
 			model.addAttribute("userId", user.getuserId());
 			model.addAttribute("userIdOfBlog", blog.getUserId());
+			model.addAttribute("defaultUsername", user.getuserName());
 			return "blog_edit.html";
 		}
 	}

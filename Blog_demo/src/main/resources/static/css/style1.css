@@ -64,3 +64,12 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.verification-code-container {
+    display: flex;
+    align-items: center;
+}
+
+.verification-code-container input {
+    margin-right: 5px;
+}

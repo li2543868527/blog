@@ -23,14 +23,19 @@
 		</div>
 
 		<nav class="navigation">
-			<audio controls th:src="@{/mp3/music.mp3}" type="audio/mp3">音楽</audio>
-			<ul>
-				<li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
-				<li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
-				<li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
-				<li><a th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
-			</ul>
-		</nav>
+            
+            <ul th:if="${userName == null}">
+                <li><a th:href="@{/login}" data-text="ログイン">ログイン</a></li>
+                <li><a th:href="@{/index/register}" data-text="新規登録">新規登録</a></li>
+            </ul>
+            <ul th:if="${userName != null}">
+                <li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
+                <li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
+                <li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
+                <li><a th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
+            </ul>
+            <audio controls th:src="@{/mp3/music.mp3}" type="audio/mp3">音楽</audio>
+        </nav>
 	</header>
 	<main class="main-content">
 		

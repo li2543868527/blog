@@ -24,6 +24,12 @@ public class BlogService {
 		}
 		return blogDao.findAll();
 	}
+	
+	//未登録のユーザーに表示するpreviewです。
+	public List<BlogEntity> previewAll(){
+		return blogDao.findAll();
+	}
+	
 
 	//新規ブログのロジックです。もしタイトルが存在する場合、失敗しましたから、falseを返します。
 	//存在しなければ、新規ブログをします

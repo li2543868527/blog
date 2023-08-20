@@ -16,6 +16,11 @@
 		<br>
 		<input type="text" name="email" placeholder="メールアドレスを入力してください" required>
 		<br>
+		<div class="verification-code-container">
+			<input type="text" name="verificationCode" placeholder="認証コード" required>
+			<button type="button" id="sendCodeButton">発送</button>
+		</div>
+		<br>
 		<input type="submit" value="登録">
 		<a th:href="@{/login}">アカウントがある？ログインへ</a>
 	</form>
