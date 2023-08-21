@@ -103,7 +103,9 @@ public class BlogController {
 			 * 保存先のパスは、"src/main/resources/static/blog-img/"というディレクトリの中に
 			 * 、fileNameで指定されたファイル名で保存される。。**/
 			try {
-				Files.copy(blogImage.getInputStream(), Path.of("src/main/resources/static/temp/blog-img/" + fileName));
+			    String absolutePath = "/root/blog-app/images/";
+				//String absolutePath = "./images/";
+			    Files.copy(blogImage.getInputStream(), Path.of(absolutePath + fileName));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -182,9 +184,19 @@ public class BlogController {
 			 * Path.of()メソッドを使用して、保存先のパスを指定している。
 			 * 保存先のパスは、"src/main/resources/static/blog-img/"というディレクトリの中に
 			 * 、fileNameで指定されたファイル名で保存される。。**/
+			
+			
+			//ここで実行すると、このパスにチェンジします
+//			try {
+//				Files.copy(blogImage.getInputStream(), Path.of("src/main/resources/static/temp/blog-img/" + fileName));
+//			} 
+			
+			
 			try {
-				Files.copy(blogImage.getInputStream(), Path.of("src/main/resources/static/temp/blog-img/" + fileName));
-			} catch (Exception e) {
+			    String absolutePath = "/root/blog-app/images/";
+				//String absolutePath = "./images/";
+			    Files.copy(blogImage.getInputStream(), Path.of(absolutePath + fileName));
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
 

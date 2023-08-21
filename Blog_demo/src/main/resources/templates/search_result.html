@@ -32,11 +32,11 @@
 		</nav>
 	</header>
 	<main>
-		<div class="search-results">
+		<div class="blog-preview">
 			<ul>
 				<li th:each="result : ${searchResults}">
 					<a th:href="@{/index/blog/{blogId}(blogId=${result.blogId})}">
-						<img th:src="@{/temp/blog-img/{imagePath}(imagePath=${result.blogImage})}" alt="">
+						<img th:src="@{/root/blog-app/images/${searchResults.blogImage}}" alt="">
 						<h2 th:text="${result.blogTitle}"></h2>
 						<p th:text="${result.blogDetails}"></p>
 					</a>

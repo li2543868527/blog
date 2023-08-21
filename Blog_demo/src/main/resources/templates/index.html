@@ -45,7 +45,8 @@
 			<ul class="blog-preview">
 				<li th:each="list:${list}">
 					<a th:href="@{/index/blog/{blogId}(blogId=${list.blogId})}">
-						<img th:src="@{/temp/blog-img/{imagePath}(imagePath=${list.blogImage})}" alt="">
+						<!--<img th:src="@{'/root/blog-app/images/' + list.blogImage}" alt="">-->
+						<img th:src="@{/root/blog-app/images/{items}(items=${list.blogImage})}" alt="">
 						<h2 th:text="${list.blogTitle}"></h2>
 						<p th:text="${list.blogDetails}"></p>
 					</a>

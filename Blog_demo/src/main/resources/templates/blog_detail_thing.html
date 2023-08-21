@@ -33,7 +33,7 @@
 	</header>
 	<main class="main-content">
 		<div class="blog-details">
-			<img th:src="@{/temp/blog-img/{imagePath}(imagePath=${blog.blogImage})}" alt="">
+			<img th:src="@{/root/blog-app/images/{items}(items=${blog.blogImage})}" alt="">
 			<h2 th:text="${blog.blogTitle}"></h2>
 			<p th:text="${blog.blogDetails}"></p>
 		</div>
