@@ -10,10 +10,15 @@
 訪問者数のアカウント：できます。
 
 技術スタック
+
 バックエンド：Spring Boot 
+
 使うIDE：eclipse & idea & SpringToolSuite4
+
 フロントエンド：html css javascript 
+
 データベース：PostgreSQL
+
 サーバ：xshell  WinSCP
 
 
