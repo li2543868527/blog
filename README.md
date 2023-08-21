@@ -96,40 +96,65 @@ jarファイルの実行: サーバー上でアップロードしたjarファイ
 操作の具体的な内容：
 
 JDKの絶対パスを使用して起動する手順：
+
 bash
+
 Copy code
+
 /root/jdk-17.0.8/bin/java -jar LoginEx-0.0.1-SNAPSHOT.jar
+
 /root/jdk-17.0.8/bin/java の部分を、実際のJDKの絶対パスに置き換え、LoginEx-0.0.1-SNAPSHOT.jar の部分を起動するファイル名に変更してください。
 
 バックグラウンドで実行する手順：
+
 bash
+
 Copy code
+
 nohup /root/jdk-17.0.8/bin/java -jar LoginEx-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+
 このコマンドはバックグラウンドでプロセスを実行し、出力を app.log ファイルにリダイレクトします。プロセスをバックグラウンドで実行するため、コマンドの末尾に & を追加します。プロセスのログを見るには、tail -f app.log を使用します。
 
 フォルダに移動してプロセスを確認する手順：
+
 bash
+
 Copy code
+
 cd /root/blog-app
+
 ps aux | grep java
+
 /root/blog-app の部分を対象のフォルダに置き換えます。ps aux | grep java はバックグラウンドで実行されているJavaプロセスを表示します。
 
 Mavenでプロジェクトをビルドする手順：
+
 bash
+
 Copy code
+
 mvn clean package
+
 このコマンドはMavenを使用してプロジェクトをビルドし、JARファイルなどの成果物を生成します。
 
 PostgreSQLを再起動する手順：
+
 bash
+
 Copy code
+
 sudo systemctl restart postgresql-13
+
 PostgreSQLを再起動します。
 
 PostgreSQLにログインしてデータベースにアクセスする手順：
+
 bash
+
 Copy code
+
 /usr/pgsql-13/bin/psql -U postgres -h localhost
+
 このコマンドは postgres ユーザーでデータベースにアクセスします。 -U オプションでユーザー名を指定し、 -h オプションでホスト名を指定します。
 
 これらの手順を適切に実行することで、サーバー上での操作が行えます。ただし、各手順の前提条件や適用する環境によって異なる場合がありますので、注意して実行してください。
