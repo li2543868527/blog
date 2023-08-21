@@ -115,8 +115,6 @@ nohup /root/jdk-17.0.8/bin/java -jar LoginEx-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
 
 bash
 
-Copy code
-
 cd /root/blog-app
 
 ps aux | grep java
@@ -127,8 +125,6 @@ Mavenでプロジェクトをビルドする手順：
 
 bash
 
-Copy code
-
 mvn clean package
 
 このコマンドはMavenを使用してプロジェクトをビルドし、JARファイルなどの成果物を生成します。
@@ -137,8 +133,6 @@ PostgreSQLを再起動する手順：
 
 bash
 
-Copy code
-
 sudo systemctl restart postgresql-13
 
 PostgreSQLを再起動します。
@@ -146,8 +140,6 @@ PostgreSQLを再起動します。
 PostgreSQLにログインしてデータベースにアクセスする手順：
 
 bash
-
-Copy code
 
 /usr/pgsql-13/bin/psql -U postgres -h localhost
 
