@@ -28,36 +28,103 @@
 	<header class="header">
 		<div class="logo">
 			<a>
-				<img th:src="@{/images/logo.png}" alt="">
+				<img id="logoImage" th:src="@{/images/logo.png}" alt="">
 			</a>
 		</div>
 		<div class="search-bar">
-			<form th:action="@{/index/search}" method="get">
-				<input type="text" name="term" placeholder="search">
-				<button type="submit">search</button>
+			<form id="searchForm" th:action="@{/index/search}" method="get">
+				<input type="text" id="searchInput" name="term" placeholder="search">
+				<button type="submit" id="searchButton">search</button>
 			</form>
 		</div>
+		<select id="languageSelect">
+			<option value="ja">日本語</option>
+			<option value="en">English</option>
+			<option value="zh">中文</option>
+		</select>
 		<nav class="navigation">
 			<ul>
-				<li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
-				<li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
-				<li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
-				<li><a th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
+				<li><a id="homeLink" th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
+				<li><a id="introductionLink" th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
+				<li><a id="newBlogLink" th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
+				<li><a id="tetrisLink" th:href="@{/tetris}" data-text="tetrisgame">テトリス</a></li>
+				<li><a id="logoutLink" th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
 			</ul>
 		</nav>
 	</header>
 	<main class="main-content">
 		<div class="introduction">
-			<img th:src="@{/images/logo.png}" alt="">
-			<p>皆さん、こんにちは。私のホームページへお越しいただき、大変光栄です。私はリコウチョウと申します。このページの作者です。私はJavaが大好きで、このブログのページを作成しました。このページを通して、みなさんにハッピーをお届けできれば幸いです。
-			</p>
-			<p>このページの様々な機能を実現できるのは、井澤先生のおかげです。先生のご指導に心より感謝申し上げます。</p>
-			<p>（上の画像はこのブログのlogoです）</p>
+			<img id="introImage" th:src="@{/images/logo.png}" alt="">
+			<p id="introductionText1">皆さん、こんにちは。私のホームページへお越しいただき、大変光栄です。私はリコウチョウと申します。</p>
+			<p id="introductionText2">このページの作者です。私はJavaが大好きで、このブログのページを作成しました。</p>
+			<p id="introductionText3">このページを通して、みなさんにハッピーをお届けできれば幸いです。</p>
+			<p id="introductionText4">このページの様々な機能を実現できるのは、井澤先生のおかげです。先生のご指導に心より感謝申し上げます。</p>
+			<p id="introductionText5">それから、私の友達ロさんも私にサーバを貸してくれて、本当にありがとうございます。</p>
+			<p id="introductionText6">
+				テトリスゲームは練習のものです。私は作者ではない。引用先のリンクはこれです：https://www.w3cschool.cn/article/53759803.html</p>
 		</div>
 	</main>
 	<footer class="footer">
 		<p>&copy; 2023 lhc</p>
 	</footer>
+	<script type="text/javascript">
+		const languageContent = {
+			ja: {
+				home: "ホームページ",
+				introduction: "自己紹介",
+				newBlog: "新規ブログ",
+				tetris: "テトリス",
+				logout: "ログアウト",
+				introductionText1: "皆さん、こんにちは。私のホームページへお越しいただき、大変光栄です。私はリコウチョウと申します。",
+				introductionText2: "このページの作者です。私はJavaが大好きで、このブログのページを作成しました。",
+				introductionText3: "このページを通して、みなさんにハッピーをお届けできれば幸いです。",
+				introductionText4: "このページの様々な機能を実現できるのは、井澤先生のおかげです。先生のご指導に心より感謝申し上げます。",
+				introductionText5: "それから、私の友達ロさんも私にサーバを貸してくれて、本当にありがとうございます。",
+				introductionText6: "テトリスゲームは練習のものです。私は作者ではない。引用先のリンクはこれです：https://www.w3cschool.cn/article/53759803.html",
+			},
+			en: {
+				home: "Home",
+				introduction: "Introduction",
+				newBlog: "New Blog",
+				tetris: "Tetris",
+				logout: "Logout",
+				introductionText1: "Hello everyone! I am delighted to welcome you to my homepage.",
+				introductionText2: "I am the author of this page. I love Java and created this blog page.",
+				introductionText3: "I hope to bring happiness to all of you through this page.",
+				introductionText4: "I am thankful to izawa for enabling the various features on this page. I am sincerely grateful for your guidance.",
+				introductionText5: "I also want to express my gratitude to my friend Lu, who provided me with a server. Thank you very much.",
+				introductionText6: "The Tetris game is for practice. I am not the author. The link to the source is: https://www.w3cschool.cn/article/53759803.html",
+			},
+			zh: {
+				home: "主页",
+				introduction: "自我介绍",
+				newBlog: "写一篇新博客",
+				tetris: "俄罗斯方块",
+				logout: "登出",
+				introductionText1: "大家好！很高兴欢迎您来到我的主页。",
+				introductionText2: "我是这个页面的作者。我热爱Java，并创建了这个博客页面。",
+				introductionText3: "希望通过这个页面将快乐带给大家。",
+				introductionText4: "这个页面的各种功能得益于井泽老师。非常感谢您的指导，老师。",
+				introductionText5: "我还要感谢我的朋友豪哥，他为我提供了服务器。非常谢谢他。",
+				introductionText6: "俄罗斯方块游戏是用来练习的。我不是作者。引用链接在这里：https://www.w3cschool.cn/article/53759803.html",
+			}
+		};
+
+		const languageSelect = document.getElementById("languageSelect");
+
+		languageSelect.addEventListener("change", function () {
+			const selectedLanguage = languageSelect.value;
+			updateLanguage(selectedLanguage);
+		});
+
+		function updateLanguage(language) {
+			const content = languageContent[language];
+			for (let i = 1; i <= 6; i++) {
+				document.getElementById(`introductionText${i}`).textContent = content[`introductionText${i}`];
+			}
+		}
+	</script>
 </body>
+
 
 </html>

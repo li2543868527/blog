@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import LoginEx.com.ex.models.entity.BlogEntity;
 import LoginEx.com.ex.models.entity.UserEntity;
@@ -141,6 +142,7 @@ public class BlogController {
 			model.addAttribute("userId", user.getuserId());
 			model.addAttribute("userIdOfBlog", blog.getUserId());
 			model.addAttribute("defaultUsername", user.getuserName());
+			
 			return "blog_detail_thing.html";
 		}
 	}
@@ -186,7 +188,7 @@ public class BlogController {
 			 * 、fileNameで指定されたファイル名で保存される。。**/
 			
 			
-			//ここで実行すると、このパスにチェンジします
+			//ここで実行すると、このパスにチェンジします(もとのコード)
 //			try {
 //				Files.copy(blogImage.getInputStream(), Path.of("src/main/resources/static/temp/blog-img/" + fileName));
 //			} 
@@ -240,6 +242,15 @@ public class BlogController {
 	public String introductionMyself() {
 		return "introduce.html";
 	}
+	
+	//Tetrisgame1の表示
+	@GetMapping("/tetris")
+	public ModelAndView game() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("tetris.html");
+		return mav;
+	}
+	
 
 	
 }

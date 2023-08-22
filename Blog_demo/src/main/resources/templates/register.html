@@ -1,32 +1,96 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>ユーザー登録へようこそ</title>
 	<link rel="stylesheet" th:href="@{/css/style1.css}">
 </head>
+
 <body>
-<div class="background">
-	<div class="container">
-		<h1>ユーザー登録へようこそ</h1>
-		<form th:action="@{/register/process}" method="POST">
-			<input type="text" name="userName" placeholder="ユーザー名を入力してください" required>
-			<br>
-			<input type="password" name="password" placeholder="パスワードを入力してください" required>
-			<br>
-			<input type="text" name="email" placeholder="メールアドレスを入力してください" required>
-			<br>
-			<div class="verification-code-container">
-				<input type="text" name="verificationCode" placeholder="認証コード" required>
-				<button type="button" id="sendCodeButton">発送</button>
-			</div>
-			<br>
-			<input type="submit" value="登録">
-			<a th:href="@{/login}">アカウントがある？ログインへ</a>
-		</form>
-		<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
-		<script th:src="@{/js/register.js}"></script>
+	<div class="background">
+		<div class="container">
+			<h1 id="welcomeTitle">ユーザー登録へようこそ</h1>
+			<form th:action="@{/register/process}" method="POST">
+				<input type="text" id="userNameInput" name="userName" placeholder="ユーザー名を入力してください" required>
+				<br>
+				<input type="password" id="passwordInput" name="password" placeholder="パスワードを入力してください" required>
+				<br>
+				<input type="text" id="emailInput" name="email" placeholder="メールアドレスを入力してください" required>
+				<br>
+				<div class="verification-code-container">
+					<input type="text" id="verificationCodeInput" name="verificationCode" placeholder="認証コード" required>
+					<button type="button" id="sendCodeButton">発送</button>
+				</div>
+				<br>
+				<input type="submit" id="registerButton" value="登録">
+				<a id="loginLink" th:href="@{/login}">アカウントがある？ログインへ</a>
+			</form>
+
+			<select id="languageSelect">
+				<option value="ja">日本語</option>
+				<option value="en">English</option>
+				<option value="zh">中文</option>
+			</select>
+		</div>
 	</div>
-</div>
+
+	<script type="text/javascript">
+		const languageContent = {
+			ja: {
+				welcome: "ユーザー登録へようこそ",
+				userNamePlaceholder: "ユーザー名を入力してください",
+				passwordPlaceholder: "パスワードを入力してください",
+				emailPlaceholder: "メールアドレスを入力してください",
+				verificationCodePlaceholder: "認証コード",
+				sendCodeButton: "発送",
+				registerButton: "登録",
+				loginLink: "アカウントがある？ログインへ"
+			},
+			en: {
+				welcome: "Welcome to User Registration",
+				userNamePlaceholder: "Enter your username",
+				passwordPlaceholder: "Enter your password",
+				emailPlaceholder: "Enter your email address",
+				verificationCodePlaceholder: "Verification Code",
+				sendCodeButton: "Send",
+				registerButton: "Register",
+				loginLink: "Already have an account? Go to Login"
+			},
+			zh: {
+				welcome: "欢迎注册用户",
+				userNamePlaceholder: "请输入用户名",
+				passwordPlaceholder: "请输入密码",
+				emailPlaceholder: "请输入邮箱地址",
+				verificationCodePlaceholder: "验证码",
+				sendCodeButton: "发送",
+				registerButton: "注册",
+				loginLink: "已经有账号？前往登录"
+			}
+		};
+
+		const languageSelect = document.getElementById("languageSelect");
+
+		languageSelect.addEventListener("change", function () {
+			const selectedLanguage = languageSelect.value;
+			updateLanguage(selectedLanguage);
+		});
+
+		function updateLanguage(language) {
+			const content = languageContent[language];
+			document.getElementById("welcomeTitle").textContent = content.welcome;
+			document.getElementById("userNameInput").placeholder = content.userNamePlaceholder;
+			document.getElementById("passwordInput").placeholder = content.passwordPlaceholder;
+			document.getElementById("emailInput").placeholder = content.emailPlaceholder;
+			document.getElementById("verificationCodeInput").placeholder = content.verificationCodePlaceholder;
+			document.getElementById("sendCodeButton").textContent = content.sendCodeButton;
+			document.getElementById("registerButton").value = content.registerButton;
+			document.getElementById("loginLink").textContent = content.loginLink;
+			// ...其他需要更新的内容
+		}
+	</script>
+	<script th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+	<script th:src="@{/js/register.js}"></script>
 </body>
+
 </html>

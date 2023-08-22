@@ -12,40 +12,40 @@
 	<header class="header">
 		<div class="logo">
 			<a>
-				<img th:src="@{/images/logo.png}" alt="">
+				<img id="logoImage" th:src="@{/images/logo.png}" alt="">
 			</a>
 		</div>
 		<div class="search-bar">
-			<form th:action="@{/index/search}" method="get">
-				<input type="text" name="term" placeholder="search">
-				<button type="submit">search</button>
+			<form id="searchForm" th:action="@{/index/search}" method="get">
+				<input type="text" id="searchInput" name="term" placeholder="search">
+				<button type="submit" id="searchButton">search</button>
 			</form>
 		</div>
-
+		<select id="languageSelect">
+			<option value="ja">日本語</option>
+			<option value="en">English</option>
+			<option value="zh">中文</option>
+		</select>
 		<nav class="navigation">
-            
-            <ul th:if="${userName == null}">
-                <li><a th:href="@{/login}" data-text="ログイン">ログイン</a></li>
-                <li><a th:href="@{/index/register}" data-text="新規登録">新規登録</a></li>
-            </ul>
-            <ul th:if="${userName != null}">
-                <li><a th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
-                <li><a th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
-                <li><a th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
-                <li><a th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
-            </ul>
-            <audio controls th:src="@{/mp3/music.mp3}" type="audio/mp3">音楽</audio>
-        </nav>
+			<ul id="navListLoggedIn" th:if="${userName != null}">
+				<li><a id="homeLink" th:href="@{/index}" data-text="ホームページ">ホームページ</a></li>
+				<li><a id="introductionLink" th:href="@{/author}" data-text="自己紹介">自己紹介</a></li>
+				<li><a id="newBlogLink" th:href="@{/index/register}" data-text="新規ブログ">新規ブログ</a></li>
+				<li><a id="tetrisLink" th:href="@{/tetris}" data-text="tetrisgame">テトリス</a></li>
+				<li><a id="logoutLink" th:href="@{/logout}" data-text="ログアウト">ログアウト</a></li>
+			</ul>
+			<ul id="navListLoggedOut" th:if="${userName == null}">
+				<li><a id="loginLink" th:href="@{/login}" data-text="ログイン">ログイン</a></li>
+				<li><a id="registerLink" th:href="@{/index/register}" data-text="新規登録">新規登録</a></li>
+			</ul>
+			<audio controls th:src="@{/mp3/music.mp3}" type="audio/mp3">音楽</audio>
+		</nav>
 	</header>
 	<main class="main-content">
-		
-		
-		
 		<div class="blog-preview">
 			<ul class="blog-preview">
 				<li th:each="list:${list}">
 					<a th:href="@{/index/blog/{blogId}(blogId=${list.blogId})}">
-						<!--<img th:src="@{'/root/blog-app/images/' + list.blogImage}" alt="">-->
 						<img th:src="@{/root/blog-app/images/{items}(items=${list.blogImage})}" alt="">
 						<h2 th:text="${list.blogTitle}"></h2>
 						<p th:text="${list.blogDetails}"></p>
@@ -55,12 +55,60 @@
 		</div>
 	</main>
 	<footer class="footer">
-		<a href="https://info.flagcounter.com/hRQh"><img src="https://s11.flagcounter.com/count2/hRQh/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+		<a href="https://info.flagcounter.com/hRQh"><img
+				src="https://s11.flagcounter.com/count2/hRQh/bg_FFFFFF/txt_000000/border_CCCCCC/columns_8/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/"
+				alt="Flag Counter" border="0"></a>
 		<p>&copy; 2023 lhc</p>
-		
 	</footer>
+	<script type="text/javascript">
+		const languageContent = {
+			// ...其他日语内容
+			ja: {
+				home: "ホームページ",
+				introduction: "自己紹介",
+				newBlog: "新規ブログ",
+				tetris: "テトリス",
+				logout: "ログアウト",
+				// ...其他日语内容
+			},
+			en: {
+				home: "Home",
+				introduction: "Introduction",
+				newBlog: "New Blog",
+				tetris: "Tetris",
+				logout: "Logout",
+				// ...其他英语内容
+			},
+			zh: {
+				home: "主页",
+				introduction: "自我介绍",
+				newBlog: "写一篇新博客",
+				tetris: "俄罗斯方块",
+				logout: "登出",
+				// ...其他中文内容
+			}
+		};
 
+		const languageSelect = document.getElementById("languageSelect");
 
+		languageSelect.addEventListener("change", function () {
+			const selectedLanguage = languageSelect.value;
+			updateLanguage(selectedLanguage);
+		});
+
+		function updateLanguage(language) {
+			const content = languageContent[language];
+			document.getElementById("homeLink").textContent = content.home;
+			document.getElementById("introductionLink").textContent = content.introduction;
+			document.getElementById("newBlogLink").textContent = content.newBlog;
+			document.getElementById("tetrisLink").textContent = content.tetris;
+			document.getElementById("logoutLink").textContent = content.logout;
+			document.getElementById("loginLink").textContent = content.login;
+			document.getElementById("registerLink").textContent = content.newRegistration;
+			// ...其他需要更新的内容
+		}
+	</script>
 </body>
+
 
 </html>
