@@ -10,7 +10,9 @@
 
 それから、私の友達ロウさんも私にサーバを貸してくれて、本当にありがとうございます。
 
+個人開発進捗シートのリンク
 
+https://docs.google.com/spreadsheets/d/16pt7goeO6nn-A1P0AEjFdx8Z8ga2x-yf/edit#gid=1171532319
 
 
 機能特徴
