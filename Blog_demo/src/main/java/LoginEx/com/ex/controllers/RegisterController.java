@@ -15,7 +15,7 @@ import LoginEx.com.ex.services.UserService;
 @Controller
 public class RegisterController {
 	@Autowired
-	private UserService adminService;
+	private UserService userService;
 	
 	@Autowired
     private EmailVerificationService emailVerificationService;
@@ -36,7 +36,7 @@ public class RegisterController {
 		// もし、usersテーブルないに登録した名前が存在しなかった場合、テーブルに保存処理をする。
 		ModelAndView mav = new ModelAndView();
 
-		if(adminService.createUser(email, userName, password)) {
+		if(userService.createUser(email, userName, password)) {
 			mav.setViewName("login.html");
 			return mav;
 		}else {

@@ -206,7 +206,7 @@ public class BlogController {
 			if (blogService.editBlog(blogId, blogTitle, registerDate, fileName, blogDetails)) {
 				return "redirect:/index";
 			} else {
-				return "redirect:/index/edit/" + blogId;
+				return "redirect:/index/blog/" + blogId;
 			}
 		}
 	}
@@ -219,7 +219,7 @@ public class BlogController {
 			return "redirect:/index";
 		}else {
 			//削除できなかった場合は編集画面に戻ります
-			return "redirect:/index/edit/"+blogId;
+			return "redirect:/index/blog/"+blogId;
 		}
 	}
 
